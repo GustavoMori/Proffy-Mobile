@@ -6,31 +6,40 @@ import heartOutLineIcon from '../../assets/images/icons/heart-outline.png'
 import unfavoriteIcon from '../../assets/images/icons/unfavorite.png'
 import whatsappIcon from '../../assets/images/icons/whatsapp.png'
 
-function TeacherItem() {
+export interface Teacher {
+  id: number;
+  avatar: string;
+  bio: string;
+  cost: number;
+  name: string;
+  subject: string;
+  whatsapp: number;
+}
+
+interface TeacherItemProps {
+  teacher: Teacher;
+}
+
+const TeacherItem: React.FunctionComponent<TeacherItemProps> = ({ teacher }) => {
   return (
     <View style={styles.container}>
       <View style={styles.profile}>
         <Image 
           style={styles.avatar}
-          source={{ uri: 'https://avatars0.githubusercontent.com/u/54715328?s=460&u=53f433753f6cb57a35a14d25e86ac4a1f0e4b932&v=4' }}
+          source={{ uri: teacher.avatar }}
         />
 
         <View style={styles.profileInfo}>
-          <Text style={styles.name}>Gustavo Mori</Text>
-          <Text style={styles.subject}>Matemática</Text>
+          <Text style={styles.name}>{teacher.name}</Text>
+          <Text style={styles.subject}>{teacher.subject}</Text>
         </View>
       </View>
 
-      <Text style={styles.bio}>
-        Engenheiro de Materiais, aspirante em me tornar um developer Fullstack com NodeJS, ReactJS, e Typescript, para poder contribuir para a comunidade.
-        {'\n'}{'\n'}
-        Nessa jornada de desenvolvimento pessoal busco amizades e trocas de experiências, até porque, como já dizia o ditado:
-        "Se quer ir rápido, vá sozinho. Se quer ir longe, vá em grupo."
-      </Text>
+      <Text style={styles.bio}>{teacher.bio}</Text>
       <View style={styles.footer}>
         <Text style={styles.price}>
           Preço/hora {'   '}
-          <Text style={styles.priceValue}>R$ 80,00</Text>
+          <Text style={styles.priceValue}>R$ {teacher.cost}</Text>
         </Text>
 
         <View style={styles.buttonsContainer}>
